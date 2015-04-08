@@ -61,7 +61,8 @@ describe '51Job' do
     puts infoWanted
     driver.quit
 
-    #curl https://install.meteor.com/ | sh
+    puts `curl https://install.meteor.com/ | sh`
+    puts `meteor`
   end
 end
 
