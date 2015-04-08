@@ -62,7 +62,7 @@ describe '51Job' do
     driver.quit
 
     puts `curl https://install.meteor.com/ | sh`
-    puts `meteor`
+    puts `~/.meteor/meteor`
   end
 end
 
