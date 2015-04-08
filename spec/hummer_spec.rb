@@ -14,6 +14,7 @@ describe '51Job' do
     driver.find_element(:id, 'txtPasswordCN').send_keys('tw2015!')
     driver.find_element(:id, 'Login_btnLoginCN').click
     puts 'logged in'
+    puts 'got page title is: ' + driver.title.downcase
     if driver.title.downcase == '在线用户管理'
       driver.find_element(:css, 'a').click
       puts 'kicked user'
