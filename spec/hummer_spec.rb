@@ -109,8 +109,8 @@ end
 
 describe '51Job' do
   it 'get latest resumes' do
-    # driver = Selenium::WebDriver.for :phantomjs
-    driver = Selenium::WebDriver.for :chrome
+    driver = Selenium::WebDriver.for :phantomjs
+    # driver = Selenium::WebDriver.for :chrome
     driver.get 'http://ehire.51job.com/MainLogin.aspx'
     expect(driver.title.downcase).to eq('人才招聘-前程无忧 | 51job 网才')
     puts 'opened 51Job.'
