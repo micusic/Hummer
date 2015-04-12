@@ -32,14 +32,10 @@ describe '51Job' do
     ddlist = driver.find_element(:css, "#DpSearchList")
     select_list = Selenium::WebDriver::Support::Select.new(ddlist)
     select_list.select_by(:text, 'test0111')
-
     sleep(2)
 
-
     driver.find_element(:css, '#btnSearch').click
-
     puts "clicked and wait"
-
     sleep(5)
 
     ids = driver.find_elements(:css, '.SearchR a')
@@ -60,30 +56,7 @@ describe '51Job' do
 
     puts info_wanted
 
-    # source = Net::HTTP.get('stackoverflow.com', '/index.html')
-    # puts source
-    # baseInfos = driver.find_elements(:xpath,"//tr[contains(@id,'trBaseInfo')]")
-    # details = driver.find_elements(:xpath,"//tr[contains(@id,'trDetail')]")
-    # infoWanted = []
-    # 5.times do |i|
-    #   curInfo = {}
-    #   re = baseInfos[i].text.scan /\s*(\S+)\s*/
-    #   curInfo[:id] = re[0][0]
-    #   curInfo[:exp] = re[1][0]
-    #   curInfo[:edu] = re[re.size-3][0]
-    #   a='最近工作：'
-    #   b='自我评价：'
-    #   re = details[i].text.scan /.*/
-    #   curInfo[:exjob] = re[0]
-    #   curInfo[:eval] = re[re.size - 2]
-    #   infoWanted << curInfo
-    # end
-    #
-    # puts infoWanted
     driver.quit
-
-    # puts `curl https://install.meteor.com/ | sh`
-    # puts `~/.meteor/meteor`
   end
 end
 
