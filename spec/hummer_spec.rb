@@ -1,10 +1,12 @@
 #encoding:UTF-8
 require 'rubygems'
 require 'selenium-webdriver'
+require 'net/http'
 
 describe '51Job' do
   it 'get latest resumes' do
-    driver = Selenium::WebDriver.for :phantomjs
+    # driver = Selenium::WebDriver.for :phantomjs
+    driver = Selenium::WebDriver.for :chrome
     driver.get 'http://ehire.51job.com/MainLogin.aspx'
     expect(driver.title.downcase).to eq('人才招聘-前程无忧 | 51job 网才')
     puts 'opened 51Job.'
@@ -40,29 +42,48 @@ describe '51Job' do
 
     sleep(5)
 
-    baseInfos = driver.find_elements(:xpath,"//tr[contains(@id,'trBaseInfo')]")
-    details = driver.find_elements(:xpath,"//tr[contains(@id,'trDetail')]")
-
-    infoWanted = []
+    ids = driver.find_elements(:css, '.SearchR a')
+    info_wanted = []
     5.times do |i|
-      curInfo = {}
-      re = baseInfos[i].text.scan /\s*(\S+)\s*/
-      curInfo[:id] = re[0][0]
-      curInfo[:exp] = re[1][0]
-      curInfo[:edu] = re[4][0]
-      a='最近工作：'
-      b='自我评价：'
-      re = details[i].text.scan /.*/
-      curInfo[:exjob] = re[0]
-      curInfo[:eval] = re[re.size - 2]
-      infoWanted << curInfo
+      cur_info = {}
+      cur_info[:id] = ids[i].text
+      cur_info[:href] = ids[i].attribute('href')
+      info_wanted << cur_info
     end
 
-    puts infoWanted
+    puts info_wanted
+
+    info_wanted.each do |info|
+      driver.get info[:href]
+      info[:resume] = driver.find_element(:css, 'div#divResume').attribute 'outerHTML'
+    end
+
+    puts info_wanted
+
+    # source = Net::HTTP.get('stackoverflow.com', '/index.html')
+    # puts source
+    # baseInfos = driver.find_elements(:xpath,"//tr[contains(@id,'trBaseInfo')]")
+    # details = driver.find_elements(:xpath,"//tr[contains(@id,'trDetail')]")
+    # infoWanted = []
+    # 5.times do |i|
+    #   curInfo = {}
+    #   re = baseInfos[i].text.scan /\s*(\S+)\s*/
+    #   curInfo[:id] = re[0][0]
+    #   curInfo[:exp] = re[1][0]
+    #   curInfo[:edu] = re[re.size-3][0]
+    #   a='最近工作：'
+    #   b='自我评价：'
+    #   re = details[i].text.scan /.*/
+    #   curInfo[:exjob] = re[0]
+    #   curInfo[:eval] = re[re.size - 2]
+    #   infoWanted << curInfo
+    # end
+    #
+    # puts infoWanted
     driver.quit
 
-    puts `curl https://install.meteor.com/ | sh`
-    puts `~/.meteor/meteor`
+    # puts `curl https://install.meteor.com/ | sh`
+    # puts `~/.meteor/meteor`
   end
 end
 
