@@ -8,7 +8,7 @@ def write_index(info_wanted)
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Hummer by micusic</title>
+    <title>Falcon by micusic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
@@ -18,8 +18,9 @@ def write_index(info_wanted)
   <body>
     <section class="page-header">
       <a id="hummer" href="index.html" class="project-name">Falcon</a>
-      <h2 class="project-tagline">Falcon is powered by Hummer.</h2>
-    </section>
+      <h2 class="project-tagline">Falcon is powered by Hummer.</h2>'
+      index_file +="<h2 class=\"project-tagline\">Updated at #{Time.now.to_s}.</h2>"
+      index_file += '</section>
 
     <section class="main-content">
 
@@ -64,7 +65,7 @@ def write_resume(info_wanted)
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Hummer by micusic</title>
+    <title>Falcon by micusic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
