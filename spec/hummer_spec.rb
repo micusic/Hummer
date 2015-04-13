@@ -172,7 +172,9 @@ describe '51Job' do
     write_resume(info_wanted)
 
     puts `cd Falcon && pwd`
-    puts `cd Falcon && git add . && git commit -m "auto commit #{Time.now.to_s}" && git push`
+    puts `cd Falcon && git add .`
+    puts `cd Falcon && GIT_COMMITER_EMAIL="micus.zhang@gmail.com" GIT_COMMITER_NAME="Micus Zhang" GIT_AUTHOR_EMAIL="micus.zhang@gmail.com" GIT_AUTHOR_NAME="Micus Zhang" git commit -m "auto commit #{Time.now.to_s}"`
+    puts `cd Falcon && git push`
   end
 end
 
